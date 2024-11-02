@@ -8,6 +8,7 @@ Este arquivo README terá explicações sobre o projeto em si, informações de 
 - Tecnologias
 - Explicação de cada arquivo
 - Explicação de termos, padrões e nomes
+- Links
 
 ## O que é o projeto?
 O projeto é um clone do site já existente [TabNews](https://www.tabnews.com.br/). Aqui ele será montado do 0, através das aulas do [curso.dev](https://curso.dev/) do [Filipe Deschamps](https://github.com/filipedeschamps).
@@ -49,3 +50,44 @@ Porém, neste projeto estou utilizando o README.md também para anotações e ex
 ## Explicação de termos, padrões e nomes
 #### LTS
 LTS, ou Long Term Support (Suporte de Longo Prazo), são versões de software que os desenvolvedores da plataforma garantem que terão um suporte de longo prazo, ou seja, os códigos desenvolvidos com versões "LTS" recebem patches de correção/segurança e suporte atualizados durante um longo tempo. Esse tipo de versão é útil para criar projetos mais estáveis, por isso, utilizamos o **LTS hydrogen** no sistema.
+
+### Protocolos
+São convenções que são utilizadas entre cliente-servidor na web para garantir a melhor forma de passar informação entre os lados. Os protocolos podem ser utilizados juntos, como se fosse camadas.
+Esses tendem a seguir o modelo OSI ou TCP/IP, que possuem camadas para cada função.
+
+- Exemplo: HTTP (define como as informações vão ser trocadas) > TCP (transmite as informações de forma confiável) > IP (encaminha os dados pela rede)
+
+#### HTTP
+HyperText Transfer Protocol: protocolo que é usado para transferência de arquivos "hypertext" (arquivos que fazem referência a outros documentos)
+
+- Curiosidade: hoje em dia o HTTP em si não é tão seguro, por isso, foi se criado o HTTPS, que é uma versão que utiliza o protocolo SSL/TLS para criptografia, o que permite uma segurança superior ao HTTP.
+#### FTP
+File Transfer Protocol: protocolo para transferências de arquivos. Geralmente usado em servidores e websites.
+#### SMTP
+Simple Mail Transfer Protocol: protocolo para transferências de mensagens de e-mail.
+
+#### TCP (Transmission Control Protocol)
+Protocolo que prioriza a confiabilidade dos dados transmitidos, mesmo que isso reduza a velocidade, garantindo que todos os dados chegam ao destino sem perdas. Ele faz a verificação de cada pacote, observando se eles estão na ordem correta, com todo o conteúdo que foi passado.
+#### UDP (User Datagram Protocol)
+Protocolo que oferece uma transmissão mais rápida que o TCP, mas sem garantia de entrega de todos os pacotes, o que permite perdas. Ele não possui verificação dos pacotes, e por esse motivo que ele é mais rápido (e menos íntegro).
+
+#### Onde usar TCP ou UDP?
+| Protocolo | Uso                                       | Exemplos                        |
+|-----------|-------------------------------------------|---------------------------------|
+| TCP       | Pacotes enviados totalmente, sem perda e na ordem correta | Mensagens, arquivos             |
+| UDP       | Pacotes não precisam chegar na íntegra    | Chamadas em vídeo, jogos digitais |
+
+**Curiosidade:** O lag ocorre por causa da perda de pacotes e da forma como o UDP ignora esse problema.
+
+
+Resumindo: TCP: mais confiabilidade, menos velocidade, UDP: mais velocidade, menos confiabilidade.
+#### IP (Internet Protocol)
+Protocolo responsável por direcionar, encaminhar e rotear os pacotes de dados para o destino correto através da rede.
+Geralmente usado com o TCP, formando o protocolo TCP/IP.
+
+## Links
+Alguns links que usei para estudar ou complementar este arquivo (ou que não foram temas abordados diretamente no curso.dev).
+
+#### Protocolos
+- [Protocolos no geral](https://www.hostmidia.com.br/blog/protocolos-de-internet/)
+- [Modelo OSI e TCP/IP](https://www.azion.com/pt-br/blog/modelo-osi-modelo-tcp-ip-importancia-dos-padroes-para-redes-e-internet/)
