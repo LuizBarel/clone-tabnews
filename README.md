@@ -29,7 +29,7 @@ Nessa seção vou explicar o que cada arquivo faz, como uma forma de registrar m
 Cada seção deste tópico será dividida por pasta (que contém uma breve explicação do que encontrar nela) e seus arquivos.
 
 ### Pasta raiz
-Pasta onde estão alguns arquivos de configuração do projeto.
+Pasta onde estão alguns arquivos de configuração do projeto e as pastas que compoe todo o site.
 
 #### .nvmrc
 Arquivo responsável por armazenar a versão do Node utilizado no projeto. Nele contém escrito `lts/hydrogen` (a versão que estamos usando), e ele está aqui para definir qual é a versão padrão utilizada no nosso projeto, ou seja, sempre que for executado `nvm install`, ele pegará o que está definido em `.nvmrc` e utilizará para instalação da versão.
@@ -46,6 +46,12 @@ Este é responsável por manter todas as dependências e subdependências na res
 Este arquivo do tipo markdown geralmente serve para documentar as informações essenciais do sistema, como descrições das funcionalidades, instruções de instalação, requisitos e exemplos de uso. Se um usuário quer conhecer o projeto, é o primeiro lugar que ele deve acessar.
 
 Porém, neste projeto estou utilizando o README.md também para anotações e explicações do que está sendo usado no desenvolvimento, a fim de ter um lugar organizado para consulta posterior.
+
+### Pasta pages
+É a pasta onde ficará todas as páginas do site, e ela define automaticamente que, qualquer arquivo JS/TS aqui, é uma página.
+
+#### index.js
+É a página inicial do projeto, tem esse nome pois, por convenção, toda página inicial se chama index (isso vem de antigamente, onde os websites possuiam uma página que recebia o usuário contendo links para o restante das páginas).
 
 ## Explicação de termos, padrões e nomes
 #### LTS
@@ -85,9 +91,14 @@ Resumindo: TCP: mais confiabilidade, menos velocidade, UDP: mais velocidade, men
 Protocolo responsável por direcionar, encaminhar e rotear os pacotes de dados para o destino correto através da rede.
 Geralmente usado com o TCP, formando o protocolo TCP/IP.
 
+### File-based Routing
+É uma forma de definir as rotas do projeto, onde cada arquivo dentro de uma pasta (no nosso caso atual, a pages) se torna uma rota, ou seja, a estrutura do diretório "pages" é a estrutura das URLs de cada página do site. Dessa forma não é necessário criar cada rota manualmente em algum arquivo.
+- Obs.: existe uma outro diretório que pode ser usado para o mesmo fim, chamado de "app".
+
 ## Links
 Alguns links que usei para estudar ou complementar este arquivo (ou que não foram temas abordados diretamente no curso.dev).
 
 #### Protocolos
 - [Protocolos no geral](https://www.hostmidia.com.br/blog/protocolos-de-internet/)
 - [Modelo OSI e TCP/IP](https://www.azion.com/pt-br/blog/modelo-osi-modelo-tcp-ip-importancia-dos-padroes-para-redes-e-internet/)
+- [UDP vs TCP](https://youtu.be/ZEEBsq3eQmg)
