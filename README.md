@@ -47,6 +47,9 @@ Este arquivo do tipo markdown geralmente serve para documentar as informações 
 
 Porém, neste projeto estou utilizando o README.md também para anotações e explicações do que está sendo usado no desenvolvimento, a fim de ter um lugar organizado para consulta posterior.
 
+#### .gitignore
+O arquivo .gitignore é usado para informar ao Git quais arquivos ou pastas devem ser ignorados no versionamento. Isso significa que o Git não rastreará nem incluirá esses itens em commits, como se eles não existissem para ele. Dessa forma, é possível proteger informações sensíveis, e evitar o registro de arquivos gerados automaticamente, no nosso caso, as pastas node_modules e .next.
+
 ### Pasta pages
 É a pasta onde ficará todas as páginas do site, e ela define automaticamente que, qualquer arquivo JS/TS aqui, é uma página.
 
