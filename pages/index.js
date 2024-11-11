@@ -6,7 +6,7 @@
  *  Componente React para a Home
  */ 
 function Home() {
-    return <h1>Teste</h1>
+    return <h1>Bem-vindo :)</h1>
 }
 
 // Para saber qual função o Next deve retornar para renderizar a página, é necessário utilizar esta linha:
