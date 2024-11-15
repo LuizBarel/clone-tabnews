@@ -98,6 +98,15 @@ Geralmente usado com o TCP, formando o protocolo TCP/IP.
 É uma forma de definir as rotas do projeto, onde cada arquivo dentro de uma pasta (no nosso caso atual, a pages) se torna uma rota, ou seja, a estrutura do diretório "pages" é a estrutura das URLs de cada página do site. Dessa forma não é necessário criar cada rota manualmente em algum arquivo.
 - Obs.: existe uma outro diretório que pode ser usado para o mesmo fim, chamado de "app".
 
+### Relação Client/Server 
+A relação Client/Server é uma forma de descrever a interação entre um cliente (que faz uma solicitação), e um servidor (que processa essa solicitação e retorna uma resposta).
+
+Segue um exemplo:
+Um usuário acessa o site do TabNews e clica no botão para comentar em um post. Como o usuário não está logado, o site exibe uma tela de login.
+
+O que aconteceu? 
+O usuário atuou como o cliente da relação, requisitando a funcionalidade de comentar no post. O site, funcionando como o servidor, processou essa solicitação, viu que ele não estava na conta e respondeu envinado a tela de login.
+
 ## Links
 Alguns links que usei para estudar ou complementar este arquivo (ou que não foram temas abordados diretamente no curso.dev).
 
