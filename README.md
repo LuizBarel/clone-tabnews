@@ -107,6 +107,11 @@ Um usuário acessa o site do TabNews e clica no botão para comentar em um post.
 O que aconteceu? 
 O usuário atuou como o cliente da relação, requisitando a funcionalidade de comentar no post. O site, funcionando como o servidor, processou essa solicitação, viu que ele não estava na conta e respondeu envinado a tela de login.
 
+### Hospedagem e Deploy
+Hospedagem é o processo de colocar o sistema em um servidor, fazendo com que ele esteja disponível na internet para que os usuários possam acessá-lo a qualquer momento. Ao hospedar, seus arquivos irão para um computador especializado em manter o sistema online.
+
+Deploy é sobre o processo de colocar o que foi desenvolvido localmente no ambiente de produção. Existem deploys que podem ser configurados para serem automatizados, por exemplo, com integração contínua, que ajudam a garantir que as atualizações sejam implementadas eficientemente.
+
 ## Links
 Alguns links que usei para estudar ou complementar este arquivo (ou que não foram temas abordados diretamente no curso.dev).
 
