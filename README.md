@@ -112,6 +112,15 @@ Hospedagem é o processo de colocar o sistema em um servidor, fazendo com que el
 
 Deploy é sobre o processo de colocar o que foi desenvolvido localmente no ambiente de produção. Existem deploys que podem ser configurados para serem automatizados, por exemplo, com integração contínua, que ajudam a garantir que as atualizações sejam implementadas eficientemente.
 
+### Milestones e Issues
+São algumas formas que estamos organizando a produção do projeto.
+
+#### Milestones
+São marcos importantes no planejamento do projeto, usados para organizar o progresso em etapas maiores ou metas principais. Elas permitem acompanhar o andamento e verificar se os objetivos gerais estão sendo atingidos. Cada milestone pode agrupar várias issues.
+
+#### Issues
+São tarefas específicas ou problemas do projeto que precisam ser resolvidos. Representam etapas menores com mais detalhes, servindo como componentes das milestones. Issues podem incluir correções de bugs, desenvolvimento de novas funcionalidades ou tarefas organizacionais.
+
 ## Links
 Alguns links que usei para estudar ou complementar este arquivo (ou que não foram temas abordados diretamente no curso.dev).
 
