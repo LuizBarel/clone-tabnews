@@ -62,6 +62,14 @@ Porém, neste projeto estou utilizando o README.md também para anotações e ex
 
 O arquivo .gitignore é usado para informar ao Git quais arquivos ou pastas devem ser ignorados no versionamento. Isso significa que o Git não rastreará nem incluirá esses itens em commits, como se eles não existissem para ele. Dessa forma, é possível proteger informações sensíveis, e evitar o registro de arquivos gerados automaticamente, no nosso caso, as pastas node_modules e .next.
 
+#### .editorconfig
+
+Arquivo usado para padronizar configurações do editor de código em projetos, garantindo uma padronização entre diferentes colaboradores. Ele define regras como indentação, uso de espaços ou tabs, codificação de caracteres, etc. Essas configurações podem ser aplicadas a todos os arquivos ou a diretórios específicos, facilitando a manutenção do código.
+
+#### .prettierignore
+
+Arquivo usado para instruir o Prettier sobre quais arquivos ou diretórios devem ser ignorados durante a aplicação de regras de formatação. (A partir da versão 3.0.0, o próprio Prettier ignora o que está no .gitignore, mas deixei aqui para demonstrar uma solução para versões mais antigas)
+
 ### Pasta pages
 
 É a pasta onde ficará todas as páginas do site, e ela define automaticamente que, qualquer arquivo JS/TS aqui, é uma página.
@@ -142,6 +150,10 @@ O usuário atuou como o cliente da relação, requisitando a funcionalidade de c
 Hospedagem é o processo de colocar o sistema em um servidor, fazendo com que ele esteja disponível na internet para que os usuários possam acessá-lo a qualquer momento. Ao hospedar, seus arquivos irão para um computador especializado em manter o sistema online.
 
 Deploy é sobre o processo de colocar o que foi desenvolvido localmente no ambiente de produção. Existem deploys que podem ser configurados para serem automatizados, por exemplo, com integração contínua, que ajudam a garantir que as atualizações sejam implementadas eficientemente.
+
+### Continuous Integration (CI)
+
+Continuous Integration (ou Integração Contínua) é uma prática no desenvolvimento de software que envolve a integração frequente do código de diferentes desenvolvedores em um repositório compartilhado. Toda vez que uma mudança é feita no código, um sistema automatizado verifica se tudo está funcionando corretamente.
 
 ### Milestones e Issues
 
