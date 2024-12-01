@@ -129,6 +129,10 @@ Resumindo: TCP: mais confiabilidade, menos velocidade, UDP: mais velocidade, men
 Protocolo responsável por direcionar, encaminhar e rotear os pacotes de dados para o destino correto através da rede.
 Geralmente usado com o TCP, formando o protocolo TCP/IP.
 
+#### DNS
+
+O DNS (Domain Name System) é um sistema que traduz nomes de domínio legíveis por humanos (como o tabnews.com.br) em endereços IP numéricos, que são lidos pelos computadores para localizar servidores e serviços na internet. Ele funciona como uma espécie de "lista telefônica da internet", permitindo que você acesse sites digitando nomes, ao invés de longas sequências numéricas.
+
 ### File-based Routing
 
 É uma forma de definir as rotas do projeto, onde cada arquivo dentro de uma pasta (no nosso caso atual, a pages) se torna uma rota, ou seja, a estrutura do diretório "pages" é a estrutura das URLs de cada página do site. Dessa forma não é necessário criar cada rota manualmente em algum arquivo.
