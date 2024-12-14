@@ -38,10 +38,12 @@ Cada seção deste tópico será dividida por pasta (que contém uma breve expli
 
 ### 📂 Pasta raiz
 
-Pasta onde estão alguns arquivos de configuração do projeto e as pastas que compoe todo o site. Abaixo a estrutura atual (atualizada em 10/12/2024) do projeto:
+Pasta onde estão alguns arquivos de configuração do projeto e as pastas que compoe todo o site. Abaixo a estrutura atual do projeto:
 
 ```
 📦 root
+┣ 📂 infra
+┃ ┗ 📜 compose.yaml
 ┣ 📂 pages
 ┃ ┣ 📜 index.js
 ┃ ┗ 📂 api
@@ -94,6 +96,16 @@ Arquivo usado para padronizar configurações do editor de código em projetos, 
 #### 📜 .prettierignore
 
 Arquivo usado para instruir o Prettier sobre quais arquivos ou diretórios devem ser ignorados durante a aplicação de regras de formatação. (A partir da versão 3.0.0, o próprio Prettier ignora o que está no .gitignore, mas deixei aqui para demonstrar uma solução para versões mais antigas).
+
+---
+
+### 📂 Infra
+
+Pasta responsável por guardar arquivos sobre a infraestrutura do projeto. Por exemplo, arquivos sobre o database, containers e outros serviços.
+
+#### 📜 Infra/**compose.yaml**
+
+Um arquivo responsável por configurar os serviços do Docker. No momento, ele contêm a configuração do banco de dados, com sua imagem, variáveis de ambiente e portas definidas.
 
 ---
 
