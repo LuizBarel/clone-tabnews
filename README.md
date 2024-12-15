@@ -44,6 +44,7 @@ Pasta onde estão alguns arquivos de configuração do projeto e as pastas que c
 📦 root
 ┣ 📂 infra
 ┃ ┗ 📜 compose.yaml
+┃ ┗ 📜 database.js
 ┣ 📂 pages
 ┃ ┣ 📜 index.js
 ┃ ┗ 📂 api
@@ -57,6 +58,7 @@ Pasta onde estão alguns arquivos de configuração do projeto e as pastas que c
 ┃          ┗ 📂 status
 ┃             ┗ 📜 get.test.js
 ┣ 📜 .editorconfig
+┣ !📜 .env
 ┣ 📜 .gitignore
 ┣ 📜 .nvmrc
 ┣ 📜 .prettierignore
@@ -97,6 +99,10 @@ Arquivo usado para padronizar configurações do editor de código em projetos, 
 
 Arquivo usado para instruir o Prettier sobre quais arquivos ou diretórios devem ser ignorados durante a aplicação de regras de formatação. (A partir da versão 3.0.0, o próprio Prettier ignora o que está no .gitignore, mas deixei aqui para demonstrar uma solução para versões mais antigas).
 
+#### !📜 .env
+
+Arquivo usado para guardar as variáveis de ambiente do projeto, como valores para conexão do banco de dados, chaves API e portas. Geralmente são informações sensíveis, por isso, não se deve fazer commit do arquivo (no momento, estarei fazendo para seguir os mesmos passos que o curso).
+
 ---
 
 ### 📂 Infra
@@ -106,6 +112,10 @@ Pasta responsável por guardar arquivos sobre a infraestrutura do projeto. Por e
 #### 📜 Infra/**compose.yaml**
 
 Um arquivo responsável por configurar os serviços do Docker. No momento, ele contêm a configuração do banco de dados, com sua imagem, variáveis de ambiente e portas definidas.
+
+#### 📜 Infra/**database.js**
+
+Arquivo responsável por gerenciar a conexão com o banco de dados e realizar consultas. Utilizamos o módulo 'pg' para conexão (módulo de conexão para SGBD Postgres).
 
 ---
 
