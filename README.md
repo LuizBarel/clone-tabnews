@@ -58,7 +58,7 @@ Pasta onde estão alguns arquivos de configuração do projeto e as pastas que c
 ┃          ┗ 📂 status
 ┃             ┗ 📜 get.test.js
 ┣ 📜 .editorconfig
-┣ !📜 .env
+┣ 📜 .env.development
 ┣ 📜 .gitignore
 ┣ 📜 .nvmrc
 ┣ 📜 .prettierignore
@@ -99,9 +99,9 @@ Arquivo usado para padronizar configurações do editor de código em projetos, 
 
 Arquivo usado para instruir o Prettier sobre quais arquivos ou diretórios devem ser ignorados durante a aplicação de regras de formatação. (A partir da versão 3.0.0, o próprio Prettier ignora o que está no .gitignore, mas deixei aqui para demonstrar uma solução para versões mais antigas).
 
-#### !📜 .env
+#### 📜 .env.development
 
-Arquivo usado para guardar as variáveis de ambiente do projeto, como valores para conexão do banco de dados, chaves API e portas. Geralmente são informações sensíveis, por isso, não se deve fazer commit do arquivo (no momento, estarei fazendo para seguir os mesmos passos que o curso).
+Arquivo usado para guardar as variáveis de ambiente do projeto, como valores para conexão do banco de dados, chaves API e portas. Este arquivo .env é usado especificamente para o desenvolvimento do projeto.
 
 ---
 
