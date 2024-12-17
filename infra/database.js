@@ -14,7 +14,7 @@ async function query(queryObject) {
     user: process.env.POSTGRES_USER,
     database: process.env.POSTGRES_DB,
     password: process.env.POSTGRES_PASSWORD,
-    ssl: process.env.NODE_ENV === "development" ? false : true,
+    ssl: getSSLValues(),
   });
 
   try {
@@ -61,6 +61,20 @@ async function status() {
       },
     },
   };
+}
+
+/**
+ * Função para retornar o valor do SSL na conexão
+ * Caso tenha CA próprio: retorna o CA
+ * Caso esteja sendo executada em ambiente de desenvolvimento: retorna false (sem SSL), se não, retorna true (com SSL)
+ */
+function getSSLValues() {
+  if (process.env.POSTGRES_CA) {
+    return {
+      ca: process.env.POSTGRES_CA,
+    };
+  }
+  return process.env.NODE_ENV === "development" ? false : true;
 }
 
 export default {
