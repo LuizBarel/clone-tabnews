@@ -3,6 +3,11 @@
  * await = vai esperar algo finalizar para continuar a execução do código
  */
 
+/**
+ * Explicação do teste:
+ * Simula uma requisição GET, e ela deve entrar na rota que deve retornar os status do banco de dados e o status code que deu tudo certo (200 - ok), o teste
+ * também verifica os valores de cada atributo do status.
+ */
 test("GET to /api/v1/status should return 200", async () => {
   const response = await fetch("http://localhost:3000/api/v1/status");
   expect(response.status).toBe(200);

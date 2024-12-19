@@ -3,6 +3,13 @@ import database from "infra/database.js";
 
 beforeAll(database.cleanDatabase);
 
+/**
+ * Explicação do teste:
+ * Ele vai simular 2 requisições POST em sequência.
+ * A primeira requsição sobre a rota deve executar as migrations, por isso deve retornar o status code 201 (created), e junto disso, um array com as migrations que foram executadas.
+ * Na segunda requisição, a rota deve tentar executar novamente as migrations, mas ela irá ver que não existe mais migrations a ser rodadas, e por isso, deve retornar um status
+ * code 200 (ok) e um array vazio.
+ */
 test("POST to /api/v1/migrations should return 200", async () => {
   const response1 = await fetch("http://localhost:3000/api/v1/migrations", {
     method: "POST",
