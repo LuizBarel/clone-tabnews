@@ -43,18 +43,25 @@ Pasta onde estão alguns arquivos de configuração do projeto e as pastas que c
 ```
 📦 root
 ┣ 📂 infra
-┃ ┗ 📜 compose.yaml
-┃ ┗ 📜 database.js
+┃ ┣ 📜 compose.yaml
+┃ ┣ 📜 database.js
+┃ ┗ 📂 migrations
+┃    ┗ 📂 1734553657446_test-migration
 ┣ 📂 pages
 ┃ ┣ 📜 index.js
 ┃ ┗ 📂 api
 ┃    ┗ 📂 v1
+┃       ┣ 📂 migrations
+┃       ┃  ┗ 📜 index.js
 ┃       ┗ 📂 status
 ┃          ┗ 📜 index.js
 ┣ 📂 tests
 ┃ ┗ 📂 integration
 ┃    ┗ 📂 api
 ┃       ┗ 📂 v1
+┃          ┣ 📂 migrations
+┃          ┃  ┣ 📜 get.test.js
+┃          ┃  ┗ 📜 post.test.js
 ┃          ┗ 📂 status
 ┃             ┗ 📜 get.test.js
 ┣ 📜 .editorconfig
@@ -62,16 +69,42 @@ Pasta onde estão alguns arquivos de configuração do projeto e as pastas que c
 ┣ 📜 .gitignore
 ┣ 📜 .nvmrc
 ┣ 📜 .prettierignore
+┣ 📜 jest.config.js
+┣ 📜 jsconfig.js
 ┣ 📜 package-lock.json
 ┣ 📜 package.json
 ┗ 📜 README.md
 ```
+
+#### 📜 .env.development
+
+Arquivo usado para guardar as variáveis de ambiente do projeto, como valores para conexão do banco de dados, chaves API e portas. Este arquivo .env é usado especificamente para o desenvolvimento do projeto.
+
+#### 📜 .editorconfig
+
+Arquivo usado para padronizar configurações do editor de código em projetos, garantindo uma padronização entre diferentes colaboradores. Ele define regras como indentação, uso de espaços ou tabs, codificação de caracteres, etc. Essas configurações podem ser aplicadas a todos os arquivos ou a diretórios específicos, facilitando a manutenção do código.
+
+#### 📜 .gitignore
+
+O arquivo .gitignore é usado para informar ao Git quais arquivos ou pastas devem ser ignorados no versionamento. Isso significa que o Git não rastreará nem incluirá esses itens em commits, como se eles não existissem para ele. Dessa forma, é possível proteger informações sensíveis, e evitar o registro de arquivos gerados automaticamente, no nosso caso, as pastas node_modules e .next.
 
 #### 📜 .nvmrc
 
 Arquivo responsável por armazenar a versão do Node utilizado no projeto. Nele contém escrito `lts/hydrogen` (a versão que estamos usando), e ele está aqui para definir qual é a versão padrão utilizada no nosso projeto, ou seja, sempre que for executado `nvm install`, ele pegará o que está definido em `.nvmrc` e utilizará para instalação da versão.
 
 - Curiosidade: este tipo de arquivo é um arquivo de "run commands", e para identificar esse tipo de arquivo, veja se ele possui "**rc**" no final dele. Esses arquivos são executados automaticamente quando o programa inicia, e geralmente contém configurações e comandos.
+
+#### 📜 .prettierignore
+
+Arquivo usado para instruir o Prettier sobre quais arquivos ou diretórios devem ser ignorados durante a aplicação de regras de formatação. (A partir da versão 3.0.0, o próprio Prettier ignora o que está no .gitignore, mas deixei aqui para demonstrar uma solução para versões mais antigas).
+
+#### 📜 .jest.config.js
+
+Um arquivo de configurações para o jest, onde nele definimos algumas configurações para os testes. Podemos definir, por exemplo, o diretorio raiz de testes, qual arquivo .env deve ser usado e habilitar o uso de sintaxes modernas como ESM (ECMAScript Modules).
+
+#### 📜 .jsconfig.js
+
+Arquivo que define configurações para o uso de JavaScript no projeto. Atualmente, ele define a URL base do projeto.
 
 #### 📜 package.json
 
@@ -87,22 +120,6 @@ Este arquivo do tipo markdown geralmente serve para documentar as informações 
 
 Porém, neste projeto estou utilizando o README.md também para anotações e explicações do que está sendo usado no desenvolvimento, a fim de ter um lugar organizado para consulta posterior.
 
-#### 📜 .gitignore
-
-O arquivo .gitignore é usado para informar ao Git quais arquivos ou pastas devem ser ignorados no versionamento. Isso significa que o Git não rastreará nem incluirá esses itens em commits, como se eles não existissem para ele. Dessa forma, é possível proteger informações sensíveis, e evitar o registro de arquivos gerados automaticamente, no nosso caso, as pastas node_modules e .next.
-
-#### 📜 .editorconfig
-
-Arquivo usado para padronizar configurações do editor de código em projetos, garantindo uma padronização entre diferentes colaboradores. Ele define regras como indentação, uso de espaços ou tabs, codificação de caracteres, etc. Essas configurações podem ser aplicadas a todos os arquivos ou a diretórios específicos, facilitando a manutenção do código.
-
-#### 📜 .prettierignore
-
-Arquivo usado para instruir o Prettier sobre quais arquivos ou diretórios devem ser ignorados durante a aplicação de regras de formatação. (A partir da versão 3.0.0, o próprio Prettier ignora o que está no .gitignore, mas deixei aqui para demonstrar uma solução para versões mais antigas).
-
-#### 📜 .env.development
-
-Arquivo usado para guardar as variáveis de ambiente do projeto, como valores para conexão do banco de dados, chaves API e portas. Este arquivo .env é usado especificamente para o desenvolvimento do projeto.
-
 ---
 
 ### 📂 Infra
@@ -116,6 +133,14 @@ Um arquivo responsável por configurar os serviços do Docker. No momento, ele c
 #### 📜 Infra/**database.js**
 
 Arquivo responsável por gerenciar a conexão com o banco de dados e realizar consultas. Utilizamos o módulo 'pg' para conexão (módulo de conexão para SGBD Postgres).
+
+#### 📂 infra/**migrations**
+
+Diretório responsável por guardar as migrations do nosso projeto. Migrations são scripts responsáveis por manusear e versionar alterações (exemplo :criação, exclusão e modificação de tabelas) no nosso banco de dados via código, evitando a utilização de meios manuais de alteração.
+
+#### 📂 infra/migrations/**1734553657446_test-migration**
+
+Arquivo de uma migration de teste. Atualmente não levanta nenhuma alteração no banco de dados, sendo usado apenas como experimento para validação do fluxo de migrations.
 
 ---
 
@@ -135,15 +160,21 @@ Uma subpasta de pages, é responsável por guardar as páginas/rotas referentes 
 
 É a pasta da versão 1.0 da API do sistema. Mantem todas as rotas da API da versão referente.
 
+#### 📂 pages/api/v1/**migrations**
+
+Guarda o que é preciso para a rota [/api/v1/migrations]().
+
+#### 📂 pages/api/v1/migrations/**index.js**
+
+Contêm as formas de retorno de cada solicitação HTTP. Com retornos GET e POST, a requsição GET retorna as migrations pendentes do projeto; a requisição POST executa as migrations pendentes e retorna quais foram executadas.
+
 #### 📂 pages/api/v1/**status**
 
-Guarda o que é preciso para a página [/api/v1/status]().
+Guarda o que é preciso para a rota [/api/v1/status]().
 
-Arquivos desta pasta:
+#### 📂 pages/api/v1/status/**index.js**
 
-```
-📜 index.js: contêm a estrutura da página.
-```
+Contêm as formas de retorno de cada solicitação HTTP. Com apenas requisição GET, a estrutura retornada é um json com dados do status do database.
 
 ### 📂 Tests
 
@@ -167,11 +198,19 @@ Exemplo destacando os caminhos semelhantes:
 
 #### 📂 tests/**integration**
 
-Responsável por guardar todos os testes que são **testes de integração** (testes que verificam como diferentes partes do sistema funcionam em conjunto.).
+Responsável por guardar todos os testes que são **testes de integração** (testes que verificam como diferentes partes do sistema funcionam em conjunto).
+
+#### 📜 tests/integration/api/v1/migrations/**get.test.js**
+
+Arquivo de teste responsável por testar a requisição GET da rota [/api/v1/migrations](). Nela testa se a requisição volta com o status code 200 e se seu corpo retorna um array que não esteja vazio.
+
+#### 📜 tests/integration/api/v1/migrations/**post.test.js**
+
+Testa a requisição POST da rota [/api/v1/migrations](). Nela testa duas requisições POST em sequência: na primeira, a requisição deve retornar com o status code 201 e o seu corpo deve devolver um array que não esteja vazio; na segunda requisição, ela deve retornar com o status code 200 e o corpo deve devolver um array que esteja vazio.
 
 #### 📜 tests/integration/api/v1/status/**get.test.js**
 
-Este é o arquivo de teste responsável por testar a requisição GET da rota [/api/v1/status](). Nela atualmente testa apenas se a requisição volta com o status code 200.
+Este é o arquivo de teste responsável por testar a requisição GET da rota [/api/v1/status](). Nela testa se a requisição volta com o status code 200 e se suas informações estão coerentes.
 
 ## 🌐 Explicação de termos, padrões e nomes
 
