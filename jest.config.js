@@ -15,6 +15,7 @@ dotenv.config({
 // Criando a configuração do Jest e especificando os diretórios onde os módulos devem ser resolvidos.
 const jestConfig = createJestConfig({
   moduleDirectories: ["node_modules", "<rootDir>"],
+  testTimeout: 60000,
 });
 
 // Exportando a configuração
