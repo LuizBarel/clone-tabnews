@@ -1,3 +1,9 @@
+import orchestrator from "tests/orchestrator.js";
+
+beforeAll(async () => {
+  await orchestrator.waitForAllServices();
+});
+
 /** !Anotações
  * async = função assíncrona
  * await = vai esperar algo finalizar para continuar a execução do código
