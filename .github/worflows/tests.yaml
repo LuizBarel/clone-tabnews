@@ -1,0 +1,19 @@
+name: Automated Tests
+
+on: pull_request
+
+jobs:
+  jest:
+    name: Jest Ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/hydrogen
+
+      # usa 'ci' ao invés de 'install' pois ele vai estritamente instalar o que está no package-lock.json, sem tentar buscar uma versão nova
+      - run: npm ci
+
+      - run: npm test
