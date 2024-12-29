@@ -45,8 +45,10 @@ Pasta onde estão alguns arquivos de configuração do projeto e as pastas que c
 ┣ 📂 infra
 ┃ ┣ 📜 compose.yaml
 ┃ ┣ 📜 database.js
-┃ ┗ 📂 migrations
-┃    ┗ 📂 1734553657446_test-migration
+┃ ┣ 📂 migrations
+┃ ┃   ┗ 📜 1734553657446_test-migration
+┃ ┗ 📂 scripts
+┃    ┗ 📜 wait-for-postgres.js
 ┣ 📂 pages
 ┃ ┣ 📜 index.js
 ┃ ┗ 📂 api
@@ -56,6 +58,7 @@ Pasta onde estão alguns arquivos de configuração do projeto e as pastas que c
 ┃       ┗ 📂 status
 ┃          ┗ 📜 index.js
 ┣ 📂 tests
+┃ ┣ 📜 orchestrator.js
 ┃ ┗ 📂 integration
 ┃    ┗ 📂 api
 ┃       ┗ 📂 v1
@@ -138,9 +141,17 @@ Arquivo responsável por gerenciar a conexão com o banco de dados e realizar co
 
 Diretório responsável por guardar as migrations do nosso projeto. Migrations são scripts responsáveis por manusear e versionar alterações (exemplo :criação, exclusão e modificação de tabelas) no nosso banco de dados via código, evitando a utilização de meios manuais de alteração.
 
-#### 📂 infra/migrations/**1734553657446_test-migration**
+#### 📜 infra/migrations/**1734553657446_test-migration**
 
 Arquivo de uma migration de teste. Atualmente não levanta nenhuma alteração no banco de dados, sendo usado apenas como experimento para validação do fluxo de migrations.
+
+#### 📂 infra/**scripts**
+
+Pasta que mantem os scripts utilizados na infraestrutura do projeto, oferecendo suporte a operações críticas e automações necessárias para o funcionamento correto dos serviços.
+
+#### 📜 infra/scripts/**wait-for-postgres.js**
+
+Arquivo que executa uma função para garantir que o PostgreSQL esteja pronto para uso antes que outras operações dependentes sejam realizadas. Este script é usado para que problemas de "race conditions" que envolvam o postgres não aconteçam (ex: as migrations serem executadas antes do postgres inicializar).
 
 ---
 
@@ -195,6 +206,10 @@ Exemplo destacando os caminhos semelhantes:
 ┃          ┗ 📂 status
 ┃             ┗ 📜 get.test.js ----> arquivo de teste
 ```
+
+#### 📜 tests/**orchestrator.js**
+
+Arquivo que tem como objetivo garantir que todos os serviços necessários de sua responsabilidade estarão disponíveis para os comandos subsequentes. Ele garante através da espera do funcionamento do serviço (atualmente sendo o web server).
 
 #### 📂 tests/**integration**
 
