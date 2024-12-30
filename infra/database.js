@@ -97,9 +97,11 @@ async function getNewClient() {
   return client;
 }
 
-export default {
+const database = {
   query,
   status,
   cleanDatabase,
   getNewClient,
 };
+
+export default database;
