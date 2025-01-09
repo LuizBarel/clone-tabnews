@@ -1,4 +1,5 @@
 import retry from "async-retry";
+import database from "infra/database.js";
 
 /**
  * Método que tem como objetivo esperar todos os serviços inicializarem para poder continuar a execução.
@@ -11,7 +12,7 @@ async function waitForAllServices() {
    * Função que espera pelo servidor web responder com um status code 200
    */
   async function waitForWebServer() {
-    // retry tentará 100 vezes executar a função "fetchStatusPage" de forma correta
+    // ! retry tentará 100 vezes executar a função "fetchStatusPage" de forma correta
     return retry(fetchStatusPage, {
       retries: 100,
       maxTimeout: 1000,
@@ -33,8 +34,17 @@ async function waitForAllServices() {
   }
 }
 
+/**
+ * Método para limpar o banco de dados (excluir e em seguida criar ele novamente)
+ * Utilizado nos testes automatizados que envolvem o DB
+ */
+async function clearDatabase() {
+  await database.query("DROP schema public cascade; CREATE schema public");
+}
+
 const orchestrator = {
   waitForAllServices,
+  clearDatabase,
 };
 
 export default orchestrator;

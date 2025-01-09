@@ -1,4 +1,3 @@
-// Importações
 import { Client } from "pg";
 
 /**
@@ -70,14 +69,6 @@ function getSSLValues() {
 }
 
 /**
- * Função para limpar o banco de dados (excluir e em seguida criar ele novamente)
- * Utilizado nos testes automatizados que envolvem o DB
- */
-async function cleanDatabase() {
-  await query("DROP schema public cascade; CREATE schema public");
-}
-
-/**
  * Função que retorna um cliente do bd com conexão já aberta
  * @returns client
  */
@@ -100,7 +91,6 @@ async function getNewClient() {
 const database = {
   query,
   status,
-  cleanDatabase,
   getNewClient,
 };
 
