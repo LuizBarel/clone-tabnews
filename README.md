@@ -6,19 +6,19 @@ Este arquivo README terá explicações sobre o projeto em si, informações de 
 
 ## 📋 Tópicos
 
-- O que é o projeto?
-- Tecnologias
-- Explicação de cada arquivo e pasta
-- Explicação de termos, padrões e nomes
-- Links
+- [O que é o projeto?](#O-que-é-o-projeto)
+- [Tecnologias](#Tecnologias)
+- [Explicação de cada arquivo e pasta](#Explicação-de-cada-arquivo-e-pasta)
+- [Explicação de termos, padrões e nomes](#Explicação-geral)
+- [Links](#Links)
 
-## ❓ O que é o projeto?
+## O que é o projeto?
 
 O projeto é um clone do site já existente [TabNews](https://www.tabnews.com.br/). Aqui ele será montado do 0, através das aulas do [curso.dev](https://curso.dev/) do [Filipe Deschamps](https://github.com/filipedeschamps).
 
 **Ao longo das aulas, irei adicionando explicações sobre telas e funcionalidades.**
 
-## 🛠️ Tecnologias
+## Tecnologias
 
 Atualmente está sendo usado:
 
@@ -28,7 +28,7 @@ Atualmente está sendo usado:
 
 **Explicações serão adicionadas a cada tecnologia no futuro.**
 
-## 🗂️ Explicação de cada arquivo e pasta
+## Explicação de cada arquivo e pasta
 
 Nessa seção vou explicar o que cada arquivo faz, como uma forma de registrar meu aprendizado e, conforme for estudando, complementar e alterar as informações.
 
@@ -42,12 +42,20 @@ Pasta onde estão alguns arquivos de configuração do projeto e as pastas que c
 
 ```
 📦 root
+┣ 📂 .github
+┃ ┗ 📂 workflows
+┃    ┣ 📜 linting.yaml
+┃    ┗ 📜 tests.yaml
+┣ 📂 .husky
+┃  ┣ 📜 commit-msg
+┃  ┗ 📜 pre-commit
 ┣ 📂 infra
 ┃ ┣ 📜 compose.yaml
 ┃ ┣ 📜 database.js
 ┃ ┣ 📂 migrations
 ┃ ┃   ┗ 📜 1734553657446_test-migration
 ┃ ┗ 📂 scripts
+┃    ┣ 📜 cycle-of-webserver.js
 ┃    ┗ 📜 wait-for-postgres.js
 ┣ 📂 pages
 ┃ ┣ 📜 index.js
@@ -69,11 +77,15 @@ Pasta onde estão alguns arquivos de configuração do projeto e as pastas que c
 ┃             ┗ 📜 get.test.js
 ┣ 📜 .editorconfig
 ┣ 📜 .env.development
+┣ 📜 .eslintrc.json
 ┣ 📜 .gitignore
 ┣ 📜 .nvmrc
 ┣ 📜 .prettierignore
+┣ 📜 .secretlintrc.json
+┣ 📜 commitlint.config.js
 ┣ 📜 jest.config.js
 ┣ 📜 jsconfig.js
+┣ 📜 LICENSE
 ┣ 📜 package-lock.json
 ┣ 📜 package.json
 ┗ 📜 README.md
@@ -86,6 +98,10 @@ Arquivo usado para guardar as variáveis de ambiente do projeto, como valores pa
 #### 📜 .editorconfig
 
 Arquivo usado para padronizar configurações do editor de código em projetos, garantindo uma padronização entre diferentes colaboradores. Ele define regras como indentação, uso de espaços ou tabs, codificação de caracteres, etc. Essas configurações podem ser aplicadas a todos os arquivos ou a diretórios específicos, facilitando a manutenção do código.
+
+#### 📜 .eslintrc.json
+
+Arquivo com algumas configurações que você pode mexer do Eslint, uma ferramenta para análise estática de código que ajuda a identificar e corrigir problemas no código JavaScript. Por exemplo, com ele é possível extender algumas configurações extras, plugins, definir regras personalizadas.
 
 #### 📜 .gitignore
 
@@ -101,13 +117,25 @@ Arquivo responsável por armazenar a versão do Node utilizado no projeto. Nele 
 
 Arquivo usado para instruir o Prettier sobre quais arquivos ou diretórios devem ser ignorados durante a aplicação de regras de formatação. (A partir da versão 3.0.0, o próprio Prettier ignora o que está no .gitignore, mas deixei aqui para demonstrar uma solução para versões mais antigas).
 
-#### 📜 .jest.config.js
+#### 📜 .secretlint.json
+
+É o arquivo de configuração do Secretlint, uma ferramenta que ajuda a identificar e prevenir a exposição de segredos (como senhas, chaves de API e outros dados sensíveis) no código-fonte, ele atualmente define as regras a serem usadas pelo módulo.
+
+#### 📜 commitlint.config.js
+
+É onde fica a configuração do módulo "Commitlint", que tem como objetivo garantir que as mensagens de commit sigam um formato e estilo padronizados. Por enquanto, ele serve para mostrar ao módulo qual "modelo de configuração" do módulo usar (ele possui várias configurações que podem ser exportadas).
+
+#### 📜 jest.config.js
 
 Um arquivo de configurações para o jest, onde nele definimos algumas configurações para os testes. Podemos definir, por exemplo, o diretorio raiz de testes, qual arquivo .env deve ser usado e habilitar o uso de sintaxes modernas como ESM (ECMAScript Modules).
 
-#### 📜 .jsconfig.js
+#### 📜 jsconfig.js
 
 Arquivo que define configurações para o uso de JavaScript no projeto. Atualmente, ele define a URL base do projeto.
+
+#### 📜 LICENSE
+
+É o arquivo de licença do projeto. Atualmente a licença é o MIT. Isso significa que qualquer pessoa pode usar, modificar e distribuir o software, desde que inclua a licença original e o aviso de copyright (ou seja, você pode mexer nele 😊).
 
 #### 📜 package.json
 
@@ -122,6 +150,38 @@ Este é responsável por manter todas as dependências e subdependências na res
 Este arquivo do tipo markdown geralmente serve para documentar as informações essenciais do sistema, como descrições das funcionalidades, instruções de instalação, requisitos e exemplos de uso. Se um usuário quer conhecer o projeto, é o primeiro lugar que ele deve acessar.
 
 Porém, neste projeto estou utilizando o README.md também para anotações e explicações do que está sendo usado no desenvolvimento, a fim de ter um lugar organizado para consulta posterior.
+
+---
+
+### 📂 .github
+
+Diretório especial de arquivos de configuração relacionados a funcionalidades extras do GitHub.
+
+### 📂 .github/workflows
+
+Responsável por guardar os workflows do GitHub Actions. Workflows são automações que podem ser executadas em resposta a eventos no repositório (por exemplo, ao fazer um pull request).
+
+#### 📜 .github/workflows/**linting.yaml**
+
+É um workflow que será executado durante o pull request, ele tem como objetivo verificar se a formatação padrão de código e commits está correta, assim como se o código está limpo (limpo de acordo com as definições do ESLINT, como por exemplo, não ter variáveis sem uso/atribuição no código).
+
+#### 📜 .github/workflows/**tests.yaml**
+
+É um workflow que será executado durante o pull request, ele tem como objetivo rodar os testes automatizados do projeto e ver se não ocorre nenhum erro de execução.
+
+---
+
+### 📂 .husky
+
+Diretório onde fica configurado o husky (este que está numa pasta ignorada pelo git) e os arquivos a serem executados por ele. Husky é uma ferramenta usada para definir e executar scripts durante o processo de interação com o Git, atualmente usamos para executar comandos durante o processo de commit.
+
+#### 📜 .husky/**commit-msg**
+
+É um arquivo que contêm o comando que vai ser rodado após a criação de uma mensagem de commit. O comando em si verifica se a mensagem do commit está seguindo o padrão definido.
+
+#### 📜 .husky/**pre-commit**
+
+É um arquivo que contêm o comando que vai ser executado logo antes do commit ser feito, ou seja, na primeira etapa do processo de commit (antes mesmo do `.husky/commit-msg`). O comando em si escrito nele verifica se existem "secrets" escritos em algum arquivo do commit, mas num geral, serve para várias verificações de pré-processamento.
 
 ---
 
@@ -152,6 +212,10 @@ Pasta que mantem os scripts utilizados na infraestrutura do projeto, oferecendo 
 #### 📜 infra/scripts/**wait-for-postgres.js**
 
 Arquivo que executa uma função para garantir que o PostgreSQL esteja pronto para uso antes que outras operações dependentes sejam realizadas. Este script é usado para que problemas de "race conditions" que envolvam o postgres não aconteçam (ex: as migrations serem executadas antes do postgres inicializar).
+
+#### 📜 infra/scripts/**cycle-of-webserver.js**
+
+Arquivo que executa um método responsável por inicializar o servidor local, e quando for encerrado, exterminar todos os serviços que iniciaram junto com ele. Ele é executado no comando "npm run dev".
 
 ---
 
@@ -227,7 +291,7 @@ Testa a requisição POST da rota [/api/v1/migrations](). Nela testa duas requis
 
 Este é o arquivo de teste responsável por testar a requisição GET da rota [/api/v1/status](). Nela testa se a requisição volta com o status code 200 e se suas informações estão coerentes.
 
-## 🌐 Explicação de termos, padrões e nomes
+## Explicação geral
 
 ### Protocolos
 
@@ -330,7 +394,15 @@ LTS, ou Long Term Support (Suporte de Longo Prazo), são versões de software qu
 
 É o local final que uma requisição HTTP chega, também é usado para descrever um endereço de API.
 
-## 🔗 Links
+#### Serverless
+
+É um modelo de computação em nuvem onde, o responsável por configurar, escalar e gerenciar o servidor fica com o provedor. Ou seja, nós devs apenas têm o objetivo de codificar o sistema, enquanto o provedor (Vercel) cuida desse processo por trás.
+
+#### YAML
+
+YAML significa "Yet Another Markup Language", mas atualmente pode ser entendido como: "YAML Ain't Markup Language". É usado para armazenar dados, porém de forma mais simples para humanos, e é usado em vários serviços, um exemplo seria o Docker.
+
+## Links
 
 Alguns links que usei para estudar ou complementar este arquivo (ou que não foram temas abordados diretamente no curso.dev).
 
@@ -339,3 +411,8 @@ Alguns links que usei para estudar ou complementar este arquivo (ou que não for
 - [Protocolos no geral](https://www.hostmidia.com.br/blog/protocolos-de-internet/)
 - [Modelo OSI e TCP/IP](https://www.azion.com/pt-br/blog/modelo-osi-modelo-tcp-ip-importancia-dos-padroes-para-redes-e-internet/)
 - [UDP vs TCP](https://youtu.be/ZEEBsq3eQmg)
+
+#### Serverless
+
+- [Explicação](https://www.redhat.com/pt-br/topics/cloud-native-apps/what-is-serverless)
+- [Explicação 2 (obs: apenas alunos do curso.dev conseguem acessar este link)](https://curso.dev/alunos/Andrei/b49e8662-5d37-4132-b481-c09c2157dcd7)
