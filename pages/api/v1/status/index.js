@@ -1,32 +1,22 @@
 // Importações
+import { createRouter } from "next-connect";
 import database from "infra/database.js";
-import { InternalServerError } from "infra/errors";
+import controller from "infra/controller";
 
-/** ! Anotações
- * request: parametro da requisição
- * response: parametro da resposta que vai ser retornada
- */
+// Criação da rota
+const router = createRouter();
+
+router.get(getHandler);
+
+export default router.handler(controller.errorHandlers);
 
 /**
  * Função que retorna o status para o usuário
  * @param {*} request
  * @param {*} response
  */
-async function status(request, response) {
-  try {
-    const status = await database.status();
+async function getHandler(request, response) {
+  const status = await database.status();
 
-    response.status(200).json(status);
-  } catch (error) {
-    const publicErrorObject = new InternalServerError({
-      cause: error,
-    });
-
-    console.log("\n Erro dentro do catch do controller:");
-    console.error(publicErrorObject);
-
-    response.status(500).json(publicErrorObject);
-  }
+  response.status(200).json(status);
 }
-
-export default status;
