@@ -1,5 +1,9 @@
 // Importações
-import { InternalServerError, MethodNotAllowedError } from "infra/errors";
+import {
+  InternalServerError,
+  MethodNotAllowedError,
+  ValidationError,
+} from "infra/errors";
 
 /**
  * Função que será executada quando um método não permitido for requisitado
@@ -13,6 +17,10 @@ function onNoMatchHandler(request, response) {
  * Função que será executada quando um erro ocorrer
  */
 function onErrorHandler(error, request, response) {
+  if (error instanceof ValidationError) {
+    return response.status(error.statusCode).json(error);
+  }
+
   const publicErrorObject = new InternalServerError({
     statusCode: error.statusCode,
     cause: error,
