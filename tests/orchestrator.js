@@ -1,5 +1,6 @@
 import retry from "async-retry";
 import database from "infra/database.js";
+import migrator from "models/migrator.js";
 
 /**
  * Método que tem como objetivo esperar todos os serviços inicializarem para poder continuar a execução.
@@ -42,9 +43,17 @@ async function clearDatabase() {
   await database.query("DROP schema public cascade; CREATE schema public");
 }
 
+/**
+ *
+ */
+async function runPendingMigrations() {
+  await migrator.runPendingMigrations();
+}
+
 const orchestrator = {
   waitForAllServices,
   clearDatabase,
+  runPendingMigrations,
 };
 
 export default orchestrator;
