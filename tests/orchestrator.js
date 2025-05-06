@@ -1,6 +1,9 @@
 import retry from "async-retry";
+import { faker } from "@faker-js/faker";
+
 import database from "infra/database.js";
 import migrator from "models/migrator.js";
+import user from "models/user.js";
 
 /**
  * Método que tem como objetivo esperar todos os serviços inicializarem para poder continuar a execução.
@@ -20,11 +23,6 @@ async function waitForAllServices() {
       minTimeout: 100,
     });
 
-    /**
-     * Função que acessa a página "api/v1/status" e verifica seu status.
-     *
-     * Caso seja diferente de 200, lança um erro.
-     */
     async function fetchStatusPage() {
       const response = await fetch("http://localhost:3000/api/v1/status");
 
@@ -35,25 +33,28 @@ async function waitForAllServices() {
   }
 }
 
-/**
- * Método para limpar o banco de dados (excluir e em seguida criar ele novamente)
- * Utilizado nos testes automatizados que envolvem o DB
- */
 async function clearDatabase() {
   await database.query("DROP schema public cascade; CREATE schema public");
 }
 
-/**
- *
- */
 async function runPendingMigrations() {
   await migrator.runPendingMigrations();
+}
+
+async function createUser(userObject) {
+  return await user.create({
+    username:
+      userObject.username || faker.internet.username().replace(/[_.-]/g, ""),
+    email: userObject.email || faker.internet.email(),
+    password: userObject.password || "validpassword",
+  });
 }
 
 const orchestrator = {
   waitForAllServices,
   clearDatabase,
   runPendingMigrations,
+  createUser,
 };
 
 export default orchestrator;
